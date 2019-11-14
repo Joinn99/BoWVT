@@ -1,0 +1,120 @@
+{% extends "index.html" %}
+
+{% block head %}
+<script>
+    function checkImage(div) {
+        if (div.getAttribute('data-checked') == '-1') {
+            div.setAttribute('data-checked', '1')
+            div.children[0].style.opacity = 0.65;
+            div.children[1].style.display = 'block';
+        }
+        else {
+            div.setAttribute('data-checked', '-1')
+            div.children[0].style.opacity = 1;
+            div.children[1].style.display = 'none';
+        }
+    }
+
+    function updateSelection() {
+        var imgs = document.getElementsByName("imgre");
+        var checks = document.getElementsByClassName("img-check");
+        for (i = 0; i < imgs.length; i++) {
+            if(imgs[i].getAttribute("data-checked") == "1"){
+                checks[i].setAttribute("value", "1");
+            }
+        }
+        document.getElementById("update").innerHTML = "Updating...";
+        document.getElementById("update").setAttribute('disabled', true);
+        document.getElementById("back").setAttribute('disabled', true);
+    }
+</script>
+{{ super() }}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout-result.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='customs.css') }}">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='layout-search.css') }}">
+{% endblock %}
+
+{% block workplace %}
+<div class="row">
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[0]) }}" alt="Result 1">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[1]) }}" alt="Result 2">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[2]) }}" alt="Result 3">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[3]) }}" alt="Result 4">
+        <div class="mark">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[4]) }}" alt="Result 5">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[5]) }}" alt="Result 6">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[6]) }}" alt="Result 7">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[7]) }}" alt="Result 8">
+        <div class="mark">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[8]) }}" alt="Result 9">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[9]) }}" alt="Result 10">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[10]) }}" alt="Result 11">
+        <div class="mark">
+        </div>
+    </div>
+    <div class="column" data-checked='-1' name='imgre' onclick="checkImage(this); ">
+        <img class="res" src="{{ url_for('static', filename=res_list[11]) }}" alt="Result 12">
+        <div class="mark">
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block menu %}
+{{ super() }}
+<form action="/update/" method="post" onsubmit="updateSelection()">
+    {% for res in res_list: %}
+    <input class="img-check" type="checkbox" checked=true value="-1" name="{{ res }}" style="display: none;">
+    {% endfor %}
+    <input name="target-img" style="display: none;" type="text" value="{{ tar_path }}">
+    <button class="buttonload" id="update" type="submit">Update</button>
+</form>
+<form action="/" method="get">
+    <button class="buttonload" id="back" type="submit">Back</button>
+</form>
+{% endblock %}
+
+{% block bodyscript %}{% endblock %}

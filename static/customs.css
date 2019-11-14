@@ -1,0 +1,125 @@
+
+/* The container must be positioned relative: */
+.custom-select {
+    position: relative;
+    font-family: Arial;
+    width: 200px;
+    font-size: 14px;
+    margin: 10px auto;
+    border: 2px solid dodgerblue;
+    border-radius: 8px;
+  }
+  
+.custom-select select {
+    display: none; /*hide original SELECT element: */
+}
+
+.custom-select:hover {
+    box-shadow: 0 8px 8px 0 rgba(128,128,128,0.24), 0 8px 16px 0 rgba(128,128,128, 0.19);
+    background-color: #1E90FF88;
+    transition-duration: 0.4s;
+    transform: translateY(2px);
+    -webkit-transform: translateY(2px);
+}
+
+.select-selected {
+    border: 2px solid dodgerblue;
+    border-radius: 8px;
+}
+
+/* Style the arrow inside the select element: */
+.select-selected:after {
+    position: absolute;
+    content: "";
+    top: 14px;
+    right: 10px;
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-color: #fff transparent transparent transparent;
+}
+
+/* Point the arrow upwards when the select box is open (active): */
+.select-selected.select-arrow-active:after {
+    border-color: transparent transparent #fff transparent;
+    top: 7px;
+}
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+    color: gainsboro;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+    position: absolute;
+    background-color: DodgerBlue;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border-radius: 8px;
+    z-index: 99;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+    display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+    background-color: #28282888 ; /* Green background */
+}
+
+.buttonload {
+    width: 200px;
+    height: 35px;
+    background-color: #28282888 ; /* Green background */
+    border-radius: 8px;
+    border: 2px solid dodgerblue; /* Remove borders */
+    color: gainsboro; /* White text */
+    margin: 10px 10px;
+    
+    font-size: 14px /* Set a font size */
+}
+
+.buttonload:hover {
+    box-shadow: 0 8px 8px 0 rgba(128,128,128,0.24), 0 8px 16px 0 rgba(128,128,128, 0.19);
+    background-color: #1E90FF88;
+    transition-duration: 0.4s;
+    transform: translateY(2px);
+    -webkit-transform: translateY(2px);
+}
+
+.buttonload:active {
+    border: 2px solid #fa8072; /* Remove borders */
+    background-color: #fa807288;
+}
+
+.buttonload:disabled {
+    color: gray; /* Green background */
+}
+
+.fa {
+    margin-left: -12px;
+    margin-right: 8px;
+}
+
+a:link {
+    color: dodgerblue;
+    text-decoration: none;
+}
+  
+a:visited {
+    color: dodgerblue;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #fa8072;
+    text-decoration: none;
+}
